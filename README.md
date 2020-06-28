@@ -1,2 +1,2 @@
-# manga-shosai
-Project MangaShosai - A Manga Reader Web App
+# Manga Shosai - マンガ書斎
+Project MangaShosai - A Reader/Server Web App for Manga
