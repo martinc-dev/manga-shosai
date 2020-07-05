@@ -22,6 +22,7 @@
   "homepage": "https://github.com/martinc-dev/manga-shosai#readme",
   "dependencies": {
     "axios": "=0.19.2",
+    "chalk": "=4.1.0",
     "cors": "=2.8.5",
     "express": "=4.17.1",
     "uuid": "=8.2.0"
