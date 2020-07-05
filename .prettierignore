@@ -1,4 +1,5 @@
 .prettierignore
+.prettierrc.json
 .eslintrc.json
 node_modules/*
 package.json

@@ -5,8 +5,8 @@
   "main": "server/app/index.js",
   "scripts": {
     "test": "jest",
-    "lint": "eslint ./server/*.js",
-    "lintFix": "eslint ./server/*.js --fix",
+    "lint": "eslint ./server/*",
+    "lintFix": "eslint ./server/* --fix",
     "prettier:fix": "prettier --write '**/@(*.js|*.json)'",
     "start": "node ./server/app/index.js"
   },
