@@ -1,0 +1,41 @@
+{
+  "name": "manga-shosai",
+  "version": "0.0.1",
+  "description": "A Manga Reader Web App",
+  "main": "server/app/index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint ./server/*.js",
+    "lintFix": "eslint ./server/*.js --fix",
+    "prettier:fix": "prettier --write '**/@(*.js|*.json)'",
+    "start": "node ./server/app/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martinc-dev/manga-shosai.git"
+  },
+  "author": "Martin Cheng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/martinc-dev/manga-shosai/issues"
+  },
+  "homepage": "https://github.com/martinc-dev/manga-shosai#readme",
+  "dependencies": {
+    "axios": "=0.19.2",
+    "cors": "=2.8.5",
+    "express": "=4.17.1",
+    "uuid": "=8.2.0"
+  },
+  "devDependencies": {
+    "eslint": "=7.4.0",
+    "eslint-plugin-jest": "=23.17.1",
+    "husky": "=4.2.5",
+    "jest": "=26.1.0",
+    "prettier": "=2.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run prettier:fix && npm run lint"
+    }
+  }
+}
