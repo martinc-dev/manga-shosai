@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`constants/regex Matches snapshots 1`] = `
+Object {
+  "thumbnailTokenRegex": "[A-Za-z0-9]{16}$",
+  "uuidV4Regex": "[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-4[0-9A-Fa-f]{3}-[89ABab][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12}$",
+}
+`;

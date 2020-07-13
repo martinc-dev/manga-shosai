@@ -25,7 +25,6 @@
     "chalk": "=4.1.0",
     "cors": "=2.8.5",
     "express": "=4.17.1",
-    "nodemon": "^2.0.4",
     "uuid": "=8.2.0"
   },
   "devDependencies": {
@@ -33,11 +32,17 @@
     "eslint-plugin-jest": "=23.17.1",
     "husky": "=4.2.5",
     "jest": "=26.1.0",
+    "nodemon": "=2.0.4",
     "prettier": "=2.0.5"
   },
   "husky": {
     "hooks": {
       "pre-push": "npm run prettier:fix && npm run lint"
+    }
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "app/(.*)": "<rootDir>/server/app/$1"
     }
   }
 }
