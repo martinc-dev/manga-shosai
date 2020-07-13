@@ -8,7 +8,7 @@
     "lint": "eslint ./server/*",
     "lintFix": "eslint ./server/* --fix",
     "prettier:fix": "prettier --write '**/@(*.js|*.json)'",
-    "start": "node ./server/app/index.js"
+    "start:api": "nodemon ./server/app/index.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "chalk": "=4.1.0",
     "cors": "=2.8.5",
     "express": "=4.17.1",
+    "nodemon": "^2.0.4",
     "uuid": "=8.2.0"
   },
   "devDependencies": {
