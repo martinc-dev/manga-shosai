@@ -1,0 +1,10 @@
+.prettierignore
+.prettierrc.json
+.eslintrc.json
+node_modules/*
+package.json
+package-lock.json
+README.md
+.env
+.env.js
+env.js
