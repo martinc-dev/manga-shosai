@@ -1,4 +1,4 @@
-const { logWarn } = require('./utils/log')
+const { logWarn } = require('./log')
 
 // eslint-disable-next-line max-params,no-unused-vars
 const errorMiddleware = (err, req, res, next) => {
@@ -14,6 +14,6 @@ const errorMiddleware = (err, req, res, next) => {
   })
 }
 
-export default {
+module.exports = {
   errorMiddleware
 }

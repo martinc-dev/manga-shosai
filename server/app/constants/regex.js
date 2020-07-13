@@ -1,5 +1,5 @@
-const uuidV4Regex = /^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i
-const thumbnailTokenRegex = /[A-Z0-9]{16}/i
+const uuidV4Regex = `[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-4[0-9A-Fa-f]{3}-[89ABab][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12}$`
+const thumbnailTokenRegex = `[A-Za-z0-9]{16}$`
 
 module.exports = {
   uuidV4Regex,
