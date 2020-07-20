@@ -76,13 +76,6 @@
         "before": true
       }
     ],
-    "lines-around-comment": [
-      "warn",
-      {
-        "beforeBlockComment": true,
-        "beforeLineComment": true
-      }
-    ],
     "max-depth": [
       "warn",
       {

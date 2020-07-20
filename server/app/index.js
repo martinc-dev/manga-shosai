@@ -3,23 +3,40 @@ const cors = require('cors')
 const http = require('http')
 
 const env = require('./constants/env')
+const { initDBAsync } = require('./services/db')
 const apiRoutes = require('./controllers/api')
 const { errorMiddleware } = require('./utils/error')
-const { logEvent } = require('./utils/log')
+const { logEvent, logWarn } = require('./utils/log')
 
-const app = express()
-const server = http.Server(app) // eslint-disable-line new-cap
+const initialize = async () => {
+  // DB
+  await initDBAsync()
 
-// Middlewares
-app.use(express.json())
-app.use(cors())
+  // Server
+  const app = express()
+  const server = http.Server(app) // eslint-disable-line new-cap
 
-// Routes
-app.use('/meta', apiRoutes.meta)
-app.use('/api/v1', apiRoutes.v1)
+  // Middlewares
+  app.use(express.json())
+  app.use(cors())
 
-// Error handler middlewares
-app.use(errorMiddleware)
-server.listen(env.server.port)
+  // Routes
+  app.use('/meta', apiRoutes.meta)
+  app.use('/api/v1', apiRoutes.v1)
 
-logEvent({ event: `SERVER:LISTEN(${env.server.port})` })
+  // Error handler middlewares
+  app.use(errorMiddleware)
+  server.listen(env.server.port)
+
+  logEvent({ event: `SERVER:LISTEN(${env.server.port})` })
+}
+
+try {
+  initialize()
+} catch (error) {
+  logWarn({
+    error,
+    src: 'MAIN',
+    description: 'An uncaught error occurred at runtime'
+  })
+}
