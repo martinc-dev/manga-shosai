@@ -22,13 +22,12 @@ const folderModel = {
     comment: 'Path that leads to the folder, no trailing slash'
   },
   name: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.TEXT,
     validate: {
-      notEmpty: true,
-      notNull: true
+      notEmpty: true
     },
-    comment: 'Name of folder'
+    comment: 'Name of folder, or NULL for root'
   }
 }
 
