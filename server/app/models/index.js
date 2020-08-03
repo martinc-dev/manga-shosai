@@ -28,6 +28,26 @@ const folderModel = {
       notEmpty: true
     },
     comment: 'Name of folder, or NULL for root'
+  },
+  folderCreatedAt: {
+    allowNull: false,
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
+    validate: {
+      notEmpty: true,
+      notNull: true
+    },
+    comment: 'Datetime(ISO) of the createdAt of the folder itself'
+  },
+  folderUpdatedAt: {
+    allowNull: false,
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
+    validate: {
+      notEmpty: true,
+      notNull: true
+    },
+    comment: 'Datetime(ISO) of the updatedAt of the folder itself'
   }
 }
 
@@ -61,6 +81,26 @@ const fileModel = {
   thumbnail: {
     type: DataTypes.TEXT,
     comment: 'File name of the thumbnail without extension, nullable'
+  },
+  fileCreatedAt: {
+    allowNull: false,
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
+    validate: {
+      notEmpty: true,
+      notNull: true
+    },
+    comment: 'Datetime(ISO) of the createdAt of the file itself'
+  },
+  fileUpdatedAt: {
+    allowNull: false,
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
+    validate: {
+      notEmpty: true,
+      notNull: true
+    },
+    comment: 'Datetime(ISO) of the updatedAt of the file itself'
   }
 }
 

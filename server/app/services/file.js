@@ -17,7 +17,7 @@ const getFileByUuidAsync = ({ uuid }) =>
 
 const getFilesByFolderUuidAsync = ({
   folderUuid,
-  sort = sortEnum.createdAtAsc,
+  sort = sortEnum.fileCreatedAtDesc,
   page = 0,
   size = 0,
   searchText = ''
@@ -33,8 +33,15 @@ const getFilesByFolderUuidAsync = ({
     ...getPaginationParam({ page, size })
   })
 
-const createFileAsync = ({ name, ext, size, thumbnail }) =>
-  File.create({ name, ext, size, thumbnail })
+const createFileAsync = ({
+  name,
+  ext,
+  size,
+  thumbnail,
+  folderUuid,
+  fileCreatedAt,
+  fileUpdatedAt
+}) => File.create({ name, ext, size, thumbnail, folderUuid, fileCreatedAt, fileUpdatedAt })
 
 const deleteAllFilesAsync = () => File.destroy({ where: {} })
 

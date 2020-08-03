@@ -19,7 +19,7 @@ const getFolderByUuidAsync = ({ uuid }) =>
 
 const getFoldersByPathAsync = ({
   path,
-  sort = sortEnum.createdAtAsc,
+  sort = sortEnum.folderCreatedAtDesc,
   page = 0,
   size = 0,
   searchText = ''
@@ -50,21 +50,28 @@ const getFolderByPathNameAsync = ({ path, name }) =>
     }
   })
 
-const getChildrenFolderOfPathNameAsync = ({
+const getChildrenFolderOfPathNameAsync = async ({
   path,
   name,
-  sort = sortEnum.createdAtAsc,
+  sort = sortEnum.folderCreatedAtDesc,
   page = 0,
   size = 0,
   searchText = ''
 }) => {
-  return getFoldersByPathAsync({
-    path: `${path}/${name}`,
+  const rootDir = pathModule.parse(path).root
+  let parsedPath = `${path}/${name}`
+
+  if (path === rootDir) parsedPath = `${path}${name || ''}`
+
+  const result = await getFoldersByPathAsync({
+    path: parsedPath,
     sort,
     page,
     size,
     searchText
   })
+
+  return name ? result : result.filter(t => t.dataValues?.name ?? null)
 }
 
 const getAncestryOfPathAsync = async ({ path }) => {
@@ -92,7 +99,8 @@ const getAncestryOfPathAsync = async ({ path }) => {
   ).filter(t => t)
 }
 
-const createFolderAsync = ({ path, name }) => Folder.create({ path, name })
+const createFolderAsync = ({ path, name, folderCreatedAt, folderUpdatedAt }) =>
+  Folder.create({ path, name, folderCreatedAt, folderUpdatedAt })
 
 const deleteAllFoldersAsync = () => Folder.destroy({ where: {} })
 
