@@ -6,7 +6,7 @@ const {
 } = require('./db')
 const { sort: sortEnum } = require('../constants/query')
 const { maximumPathDepth } = require('../constants/path')
-const { getPaginationParam } = require('../utils/query')
+const { getPaginationParam, getSearchTermsForWhere } = require('../utils/query')
 
 const getFolderByUuidAsync = ({ uuid }) =>
   Folder.findOne({
@@ -17,16 +17,26 @@ const getFolderByUuidAsync = ({ uuid }) =>
     }
   })
 
-const getFoldersByPathAsync = ({ path, sort = sortEnum.createdAtAsc, page = 0, size = 0 }) =>
-  Folder.findAll({
+const getFoldersByPathAsync = ({
+  path,
+  sort = sortEnum.createdAtAsc,
+  page = 0,
+  size = 0,
+  searchText = ''
+}) => {
+  const query = {
     where: {
       path: {
         [Op.eq]: path
-      }
+      },
+      ...getSearchTermsForWhere({ searchText, fieldName: 'name' })
     },
     order: [sort],
     ...getPaginationParam({ page, size })
-  })
+  }
+
+  Folder.findAll(query)
+}
 
 const getFolderByPathNameAsync = ({ path, name }) =>
   Folder.findOne({
@@ -45,13 +55,15 @@ const getChildrenFolderOfPathNameAsync = ({
   name,
   sort = sortEnum.createdAtAsc,
   page = 0,
-  size = 0
+  size = 0,
+  searchText = ''
 }) => {
   return getFoldersByPathAsync({
     path: `${path}/${name}`,
     sort,
     page,
-    size
+    size,
+    searchText
   })
 }
 
@@ -80,10 +92,16 @@ const getAncestryOfPathAsync = async ({ path }) => {
   ).filter(t => t)
 }
 
+const createFolderAsync = ({ path, name }) => Folder.create({ path, name })
+
+const deleteAllFoldersAsync = () => Folder.destroy({ where: {} })
+
 module.exports = {
   getFolderByUuidAsync,
   getFoldersByPathAsync,
   getFolderByPathNameAsync,
   getChildrenFolderOfPathNameAsync,
-  getAncestryOfPathAsync
+  getAncestryOfPathAsync,
+  createFolderAsync,
+  deleteAllFoldersAsync
 }
