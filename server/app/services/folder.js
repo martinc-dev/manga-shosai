@@ -35,7 +35,7 @@ const getFoldersByPathAsync = ({
     ...getPaginationParam({ page, size })
   }
 
-  Folder.findAll(query)
+  return Folder.findAll(query)
 }
 
 const getFolderByPathNameAsync = ({ path, name }) =>
