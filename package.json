@@ -25,8 +25,10 @@
     "chalk": "=4.1.0",
     "cors": "=2.8.5",
     "express": "=4.17.1",
-    "sequelize": "^6.3.3",
-    "sqlite3": "^5.0.0",
+    "image-thumbnail": "=1.0.10",
+    "node-dir": "=0.1.17",
+    "sequelize": "=6.3.3",
+    "sqlite3": "=5.0.0",
     "uuid": "=8.2.0"
   },
   "devDependencies": {

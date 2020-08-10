@@ -58,13 +58,8 @@ const getChildrenFolderOfPathNameAsync = async ({
   size = 0,
   searchText = ''
 }) => {
-  const rootDir = pathModule.parse(path).root
-  let parsedPath = `${path}/${name}`
-
-  if (path === rootDir) parsedPath = `${path}${name || ''}`
-
   const result = await getFoldersByPathAsync({
-    path: parsedPath,
+    path: pathModule.resolve(path, name || ''),
     sort,
     page,
     size,
